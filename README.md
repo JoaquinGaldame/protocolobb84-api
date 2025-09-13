@@ -27,7 +27,7 @@
 
   ---
 
-## 📌 Overview
+## Overview
 
 El **Protocolo BB84** es uno de los algoritmos fundamentales de la **criptografía cuántica**, diseñado para el intercambio seguro de claves mediante qubits.  
 Su fortaleza radica en que cualquier intento de espionaje (interceptación de qubits por un atacante, Eva) altera el sistema cuántico, introduciendo errores detectables por los usuarios legítimos (Ana y Beto).
@@ -40,14 +40,28 @@ Se incluyen dos modos de simulación:
 
 ---
 
-## ⚙️ Getting Started
 
-### ✅ Prerequisites
+## Usage
+Iniciar el servidor con:
+```bash
+python -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+Luego acceder a la documentación interactiva de la API en:
+
+Swagger UI → http://127.0.0.1:8000/docs
+
+ReDoc → http://127.0.0.1:8000/redoc
+
+
+## Getting Started
+
+### Prerequisites
 
 - Python 3.9+
 - pip
 
-### 📦 Installation
+### Installation
 
 Clonar el repositorio e instalar dependencias:
 
@@ -56,3 +70,33 @@ git clone https://github.com/USER/PROTOCOLOBB84-API.git
 cd PROTOCOLOBB84-API
 
 pip install -r requirements.txt
+```
+
+### Ejemplo: Simulación BB84
+La API expone la ruta principal para la simulación del protocolo:
+
+
+### POST /bb84/simular
+Request Body:
+```JSON
+{
+  "largo": 10,
+  "con_espia": true
+}
+```
+
+Response
+```JSON
+{
+  "baseAna": ["Z","X","Z","Z","X","X","Z","X","Z","X"],
+  "baseBeto": ["X","X","Z","Z","Z","X","X","Z","X","X"],
+  "bitsAna": [1,0,1,0,1,1,0,1,0,1],
+  "bitsBeto": [0,0,1,0,0,1,1,0,0,1],
+  "claveCompartida": [1,0,0,1],
+  "porcentaje": 40.0,
+  "baseEva": ["Z","Z","X","X","Z","X","Z","Z","X","Z"],
+  "bitsBetoEva": [1,0,0,1,0,1,1,1,0,0],
+  "claveConEva": [0,1],
+  "porcentajeConEva": 20.0
+}
+```
