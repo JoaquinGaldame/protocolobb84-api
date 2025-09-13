@@ -9,7 +9,8 @@ app.include_router(bb84_router.router)
 # Configurar CORS
 origins = [
     "http://localhost:4200",  # tu frontend Angular
-    "http://127.0.0.1:4200" # también si lo necesitas
+    "http://127.0.0.1:4200", # también si lo necesitas
+    "http://protocolobb84.joaquingaldame.com/"
 ]
 
 app.add_middleware(
